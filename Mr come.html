@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR COME AI EDITOR | Private Access</title>
+    <style>
+        :root { --primary: #1a73e8; --secondary: #25d366; --accent: #ff9900; --dark: #1e1e2d; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
+        .container { max-width: 500px; margin: auto; padding: 15px; }
+        
+        header { background: var(--dark); color: white; padding: 30px 15px; border-radius: 0 0 25px 25px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        
+        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-top: -20px; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border: 1.5px solid #eee; border-radius: 12px; box-sizing: border-box; font-size: 16px; }
+        .btn-main { background: var(--primary); color: white; border: none; padding: 16px; width: 100%; border-radius: 12px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        .btn-main:active { transform: scale(0.98); }
+
+        /* Dashboard Tools */
+        .grid-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+        .tool-item { background: white; padding: 15px; border-radius: 15px; text-align: center; border: 1px solid #f0f0f0; cursor: pointer; }
+        .tool-icon { font-size: 28px; display: block; margin-bottom: 8px; }
+        .tool-name { font-size: 12px; font-weight: 600; color: #444; }
+
+        .hidden { display: none; }
+        .admin-badge { background: #e8f0fe; color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="margin:0; font-size: 22px;">MR COME AI EDITOR</h1>
+    <p style="opacity: 0.8; font-size: 14px;">Injira ukoresheje ijambo ry'ibanga</p>
+</header>
+
+<div class="container">
+    <div id="login-section" class="card">
+        <h2 style="text-align: center;">Umutekano</h2>
+        <p style="text-align: center; color: #777; font-size: 14px;">Andika ijambo ry'ibanga ryawe kugira ngo utangire.</p>
+        
+        <input type="text" id="user-name" placeholder="Izina ryawe">
+        <input type="password" id="secret-key" placeholder="Ijambo ry'ibanga">
+        
+        <button class="btn-main" onclick="checkAccess()">Fungura Urubuga</button>
+        <p id="error-msg" style="color: red; font-size: 13px; text-align: center; margin-top: 10px;" class="hidden">Ijambo ry'ibanga si ryo!</p>
+    </div>
+
+    <div id="main-dashboard" class="hidden">
+        <div class="card" style="margin-top: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="welcome-text" style="font-weight: bold;"></span>
+                <span class="admin-badge">VIP Verified</span>
+            </div>
+            
+            <div class="grid-tools">
+                <div class="tool-item" onclick="alert('Banza wishyure $5 kuri Mobile Money')">
+                    <span class="tool-icon">💃</span><span class="tool-name">Byinshisha Ifoto</span>
+                </div>
+                <div class="tool-item" onclick="alert('Banza wishyure $5 kuri Mobile Money')">
+                    <span class="tool-icon">🗣️</span><span class="tool-name">Vugisha Ifoto</span>
+                </div>
+                <div class="tool-item" onclick="alert('Banza wishyure $5 kuri Mobile Money')">
+                    <span class="tool-icon">🐾</span><span class="tool-name">Kinisha Inyamaswa</span>
+                </div>
+                <div class="tool-item" onclick="alert('Banza wishyure $5 kuri Mobile Money')">
+                    <span class="tool-icon">🎬</span><span class="tool-name">Kora Filime</span>
+                </div>
+                <div class="tool-item" onclick="alert('Banza wishyure $5 kuri Mobile Money')">
+                    <span class="tool-icon">🎶</span><span class="tool-name">Andika Indirimbo</span>
+                </div>
+                <div class="tool-item" onclick="alert('Banza wishyure $5 kuri Mobile Money')">
+                    <span class="tool-icon">✂️</span><span class="tool-name">Video Editing</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px;">
+                <p style="font-size: 14px; font-weight: bold;">Kwizigamira (Subscription)</p>
+                <button class="btn-main" style="background: var(--secondary);" onclick="window.location.href='https://flutterwave.com/pay/mrcome'">Ishyura na Mobile Money ($5 - $500)</button>
+            </div>
+        </div>
+        <p style="text-align: center;"><button onclick="location.reload()" style="background:none; border:none; color:gray; cursor:pointer;">Sohoka (Logout)</button></p>
+    </div>
+</div>
+
+<script>
+    function checkAccess() {
+        const name = document.getElementById('user-name').value;
+        const key = document.getElementById('secret-key').value;
+        const error = document.getElementById('error-msg');
+
+        // IJAMBO RY'IBANGA WASHYIZEHO
+        const correctKey = "Mamadr@001";
+
+        if (key === correctKey) {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('main-dashboard').classList.remove('hidden');
+            document.getElementById('welcome-text').innerText = "Muraho, " + (name ? name : "Musura");
+        } else {
+            error.classList.remove('hidden');
+            setTimeout(() => { error.classList.add('hidden'); }, 3000);
+        }
+    }
+</script>
+
+</body>
+</html>
